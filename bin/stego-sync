@@ -1,0 +1,2 @@
+rsync -e "ssh" -rca --delete-after /Users/hczhang/workplace/StegoService/src/ hczhang.desktop.amazon.com:/home/hczhang/workplace/StegoService/src/
+
