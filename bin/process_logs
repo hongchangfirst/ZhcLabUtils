@@ -1,0 +1,14 @@
+#transfer the logs to my host
+scp -r logs zhc@zhc.lab.com:~/logs
+
+#remote unrelated logs
+find 05 -type f ! -name "wire.log" --exec rm -rf {} \;
+
+#unzip all the logs
+sudo gunzip -r 05
+
+#aggregate all logs into one big file
+find 05 -type f -name "wire.log.*" | xargs cat > all_logs
+
+#find some pattern in all files.
+find . -name "application.log.*" | xargs -i cp {} ./ gunzip *.gz ls | grep application.log | xargs -i cat {} | grep -e 'FATAL\|ERROR\|WARN\|Exception'
