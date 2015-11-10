@@ -1,0 +1,25 @@
+
+if(@ARGV!=2){
+  die "Usage: $0 sample_file sample_number\n";
+}
+my($sample_file, $sample_number) = @ARGV;
+open my $FILE, "<$sample_file" or die "Can't open $sample_file $!\n";
+my @content = <$FILE>;
+my $all_number = @content;
+#print STDERR "|$all_number|\n";
+
+my %hits;
+my $wl = $sample_number;
+for(my $i = 0; $i < $all_number; ++$i){
+  if(rand($all_number-$i) < $wl){
+    $hits{$i} = 1;
+#  print STDERR "$wl\n";
+    --$wl;
+  }
+}
+
+my $j = 0;
+foreach(@content){
+  print "$_" if $hits{$j};
+  ++$j;
+}

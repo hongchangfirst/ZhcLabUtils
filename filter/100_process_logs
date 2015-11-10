@@ -1,0 +1,4 @@
+#find . -type f ! -name "wire.log.*" -print -exec rm -rf {} \;   
+#gunzip -r 04
+#find 04 -type f -name "wire.log.*" | xargs cat > ../all_logs
+

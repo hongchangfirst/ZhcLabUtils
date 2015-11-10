@@ -1,0 +1,5 @@
+
+while(<STDIN>){
+  $content = `./004_get_usrinfo_by_openid_with_token $_`;
+  print "$content\n\n";
+}

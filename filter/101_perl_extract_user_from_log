@@ -1,0 +1,9 @@
+#my $log_name="wire.log.2014-04-18-09";
+my $log_name = $ARGV[0];
+open(FILE,"$log_name") or die "can't open $file $!\n";
+my $content = join("",<FILE>);
+while($content =~ /<FromUserName>.*<\/FromUserName>\n<CreateTime>.*<\/CreateTime>\n<MsgType><!\[CDATA\[image\]\]><\/MsgType>\n/g)
+{
+    print $&,"\n";
+}
+close(FILE);

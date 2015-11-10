@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# get output something like:
+#       <value>access_token</value>
+
+curl -s 'http://34004.pek.zhclab.com:8000/get_token?verification=123' | awk 'NR==17 {print}' | awk -F '[<>]' '{print $3}'

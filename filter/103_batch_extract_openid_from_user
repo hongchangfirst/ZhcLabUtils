@@ -1,0 +1,1 @@
+find $1 -type f -exec ./102_extract_openid_from_user {} \;

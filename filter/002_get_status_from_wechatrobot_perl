@@ -1,0 +1,17 @@
+use LWP::UserAgent;
+
+my $account = "gh_e9012938lsd";
+my $scret = "secret";
+my $wechatid = $ARGV[0];
+
+my $signature = `/apollo/env/envImprovement/jdk/jre/bin/java HashKit $wechatid | awk '{print $1}'`;
+chomp($signature);
+$signature = uc($signature);
+#print STDERR "$signature\n";
+
+my $browser = LWP::UserAgent->new;
+my $req = HTTP::Request->new('GET' => 'http://wechat.qq.com/getStatus');
+$req->content_type('application/json');
+$req->content('{"account":"'.$account.'","wechatId":"'.$wechatid.'","signature":"'.$signature.'"}');
+my $res = $browser->request($req);
+print $res->content();

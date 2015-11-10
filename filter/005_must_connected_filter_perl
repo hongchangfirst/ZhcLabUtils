@@ -1,0 +1,11 @@
+my $i=1;
+while(<STDIN>){
+  chomp;
+  $status = `perl 002_get_status_from_wechatrobot_perl $_`;
+  print STDERR "$i\n";
+  ++$i;
+  print STDERR $status;
+  if($status =~ /<followStatus>true<\/followStatus>\n  <connectStatus>true<\/connectStatus>/g){
+    print "$_\n";
+  }
+}
