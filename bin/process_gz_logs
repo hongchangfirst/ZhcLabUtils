@@ -1,0 +1,11 @@
+#You have to escape the first '*' so that the shell does not interpret it. "-print0" tells find to print a null character after each file it finds; "xargs -0" reads from standard input and runs the command after it for each file; "zgrep" works like "grep", but uncompresses the file first.
+#'-print0' and '-0' are not mandatory. xargs uses '\n' by default.
+#They're necessary if there might be space characters in the paths; there's no reason other than complexity not to use them.
+
+find -name \*.gz -print0 | xargs -0 zgrep "pattern"
+
+# or we can use below command
+find -name '*.gz' | xargs zgrep "pattern"
+
+# or we can use recursive option
+zgrep -irs 'pattern' logs/
